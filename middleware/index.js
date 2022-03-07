@@ -3,7 +3,7 @@ const express = require("express");
 const app =express();
 app.use(shuh)
 // app.use(express.json())
-app.get("/book",(req,res)=>{
+app.get("/books",(req,res)=>{
    res.send("Fetching all books");
 })
 
@@ -15,7 +15,7 @@ app.get("/book",(req,res)=>{
 //     res.send(json)
 // })
 
-app.get("/book/:name",(req,res)=>{
+app.get("/books/:name",(req,res)=>{
     req.name = req.params.name
     res.send({Bookname:req.name})
 })
