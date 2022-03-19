@@ -4,7 +4,7 @@ const req = require("express/lib/request")
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.join(__dirname,"../my-uploads"));
+      cb(null, path.join(__dirname,"../gallary"));
     },
     filename: function (req, file, cb) {
       const uniquePrefix = Date.now()

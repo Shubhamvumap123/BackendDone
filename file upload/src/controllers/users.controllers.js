@@ -1,8 +1,10 @@
-  const express = require('express');
+     const express = require('express');
 
 const User = require('../models/users.model');
 
 const upload = require("../middlewares/upload")
+
+const gallary = require("../middlewares/gallary")
 
 const router = express.Router()
 
@@ -14,28 +16,28 @@ router.get("",async(req,res)=>{
         return res.status(500).send({message: error.message});
     }
 });
-router.post("",upload.single("profilePic"),async(req,res)=>{
+router.post("",upload.single("profilePicture"),async(req,res)=>{
     try {
         const user = await User.create({
            firstName:req.body.firstName,
-           profilePic:req.file.path,
+           profilePicture:req.file.path,
         });
         return res.status(200).send(user);
     } catch (error) {
-        return res.status(500).send({message:arr.message});
+        return res.status(500).send({message:error.message});
     }
 });
 
-router.post("/multiple",upload.any("profilePic"),async(req,res)=>{
+router.post("/multiple",gallary.array("profilePicture",5),async(req,res)=>{
     try{
         const filePaths = req.files.map((file) =>{
             return file.path;
         });
         const user = await User.create({
             firstName:req.body.firstName,
-            profilePic:filePath,
+            profilePic:filePaths,
         });
-        
+        return res.status(200).send(user);
     }catch (error) {
 console.log("error",error)
     }
