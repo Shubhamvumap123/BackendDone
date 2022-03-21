@@ -1,4 +1,6 @@
-     const express = require('express');
+    
+    
+    const express = require('express');
 
 const User = require('../models/users.model');
 
@@ -8,7 +10,7 @@ const gallary = require("../middlewares/gallary")
 
 const router = express.Router()
 
-router.get("",async(req,res)=>{
+router.get("/",async(req,res)=>{
     try {
         const users = await User.find().lean().exec();
         return res.status(200).send(users);
@@ -16,7 +18,7 @@ router.get("",async(req,res)=>{
         return res.status(500).send({message: error.message});
     }
 });
-router.post("",upload.single("profilePicture"),async(req,res)=>{
+router.post("/",upload.single("profilePicture"),async(req,res)=>{
     try {
         const user = await User.create({
            firstName:req.body.firstName,
@@ -24,7 +26,8 @@ router.post("",upload.single("profilePicture"),async(req,res)=>{
         });
         return res.status(200).send(user);
     } catch (error) {
-        return res.status(500).send({message:error.message});
+        // return res.status(500).send({message:error.message});
+        return res.status(500).send("madarchod")
     }
 });
 
