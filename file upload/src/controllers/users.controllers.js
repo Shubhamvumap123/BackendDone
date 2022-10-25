@@ -27,7 +27,7 @@ router.post("/",upload.single("profilePicture"),async(req,res)=>{
         return res.status(200).send(user);
     } catch (error) {
         // return res.status(500).send({message:error.message});
-        return res.status(500).send("madarchod")
+        return res.status(500).send("profilepic")
     }
 });
 
