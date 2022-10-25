@@ -26,12 +26,13 @@ router.post("/",upload.single("profilePicture"),async(req,res)=>{
         });
         return res.status(200).send(user);
     } catch (error) {
-        // return res.status(500).send({message:error.message});
-        return res.status(500).send("profilepic")
+        return res.status(500).send({message:error.message});
+        // return res.status(500).send("profilepic")
     }
 });
 
-router.post("/multiple",gallary.array("profilePicture",5),async(req,res)=>{
+router.post("/multiple",gallary.array("profilePicture",5),async(req, res)=>{
+
     try{
         const filePaths = req.files.map((file) =>{
             return file.path;
@@ -44,6 +45,8 @@ router.post("/multiple",gallary.array("profilePicture",5),async(req,res)=>{
     }catch (error) {
 console.log("error",error)
     }
-})
+
+}
+)
 
 module.exports = router;
